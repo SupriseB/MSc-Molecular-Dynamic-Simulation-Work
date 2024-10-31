@@ -1,0 +1,51 @@
+; Run parameters
+integrator              = md        ; Leap-frog integrator
+nsteps                  = 25000     ; 25 ps
+dt                      = 0.001     ; 1 fs time step
+
+; Output control
+nstxout-compressed      = 1000      ; Compressed trajectory output every 1 ps
+nstenergy               = 1000      ; Save energies every 1 ps
+nstlog                  = 1000      ; Write to log file every 1 ps
+
+; Bond parameters
+continuation            = yes       ; Continue from NVT
+constraint_algorithm    = lincs     ; Constraint algorithm
+constraints             = all-bonds ; All bonds constrained
+lincs_iter              = 1         ; Number of iterations to correct for rotational lengthening
+lincs_order             = 4         ; Highest order in the expansion of the constraint coupling matrix
+
+; Neighbor searching
+cutoff-scheme           = Verlet    ; Buffered neighbor searching
+ns_type                 = grid      ; Neighbor search method
+nstlist                 = 10        ; Update neighbor list every 10 steps
+rlist                   = 1.2       ; Cutoff for the short-range neighbor list
+rcoulomb                = 1.2       ; Short-range electrostatic cutoff
+rvdw                    = 1.2       ; Short-range Van der Waals cutoff
+
+; Electrostatics
+coulombtype             = PME       ; Particle Mesh Ewald for long-range electrostatics
+pme_order               = 4         ; Interpolation order for PME
+fourierspacing          = 0.16      ; Fourier grid spacing for PME
+
+; Temperature coupling is on
+tcoupl                  = V-rescale ; Modified Berendsen thermostat
+tc-grps                 = Protein Non-Protein ; Two coupling groups - more accurate
+tau_t                   = 0.1 0.1   ; Time constant, in ps
+ref_t                   = 300 300   ; Reference temperature, one for each group, in K
+
+; Pressure coupling is on
+pcoupl                  = Parrinello-Rahman  ; Pressure coupling on in NPT
+pcoupltype              = isotropic          ; Isotropic pressure coupling
+tau_p                   = 2.0                ; Time constant, in ps
+ref_p                   = 1.0                ; Reference pressure, in bar
+compressibility         = 4.5e-5             ; Isothermal compressibility of water, bar^-1
+
+; Periodic boundary conditions
+pbc                     = xyz       ; 3-D PBC
+
+; Dispersion correction
+DispCorr                = EnerPres  ; Apply long-range dispersion corrections for Energy and Pressure
+
+; Velocity generation
+gen_vel                 = no        ; Don't generate new velocities, continue from previous run
