@@ -1,0 +1,38 @@
+; Run parameters
+integrator               = md
+nsteps                   = 25000          ; Number of steps (25,000 steps)
+dt                       = 0.001           ; Time step (ps) - smaller timestep to avoid instability
+nstxout-compressed       = 500            ; Save coordinates every 500 steps
+nstvout                  = 500            ; Save velocities every 500 steps
+nstenergy                = 500            ; Save energy every 500 steps
+nstlog                   = 500            ; Save log file every 500 steps
+
+; Temperature coupling
+tcoupl                   = V-rescale       ; Temperature coupling method
+tc-grps                  = System          ; Coupling groups
+tau_t                    = 0.1             ; Coupling time constant (ps)
+ref_t                    = 300.0           ; Reference temperature (K)
+
+; Pressure coupling
+pcoupl                   = no              ; No pressure coupling for NVT
+
+; Periodic boundary conditions
+pbc                      = xyz             ; Periodic boundary conditions in all directions
+
+; Constraints
+constraints               = all-bonds       ; Constrain all bonds
+
+; Neighbor searching
+nstlist                  = 10              ; Frequency to update neighbor list
+rlist                    = 1.0             ; Cut-off distance for neighbor list (nm)
+
+; Electrostatics
+coulombtype              = PME             ; PME for electrostatics
+rcoulomb                 = 1.0             ; Cut-off distance for Coulomb interactions (nm)
+
+; Van der Waals
+vdwtype                  = Cut-off         ; Use cut-off for van der Waals interactions
+rvdw                     = 1.0             ; Cut-off distance for van der Waals interactions (nm)
+
+; Energy groups
+energygrps               = System          ; Groups for which energies are computed
