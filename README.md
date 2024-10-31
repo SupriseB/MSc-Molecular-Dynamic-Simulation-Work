@@ -7,7 +7,7 @@ This project provides a script for analyzing and visualizing the results of mole
 - **Gnuplot**: For plotting RMSD, Rg, and RMSF graphs.
 - **Bash**: The script is written in Bash, which should be run in a Unix-like environment.
 - **Protein pdb files**
-- **mdp files** : These are required to run the MD Simulation #Set up according to forcefield used
+- **mdp files** : These are required to run the MD Simulation #Set up according to forcefield used. #In this case used charmm 27 force field
 
 ## Directory Structure
 
